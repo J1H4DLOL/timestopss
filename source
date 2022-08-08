@@ -12,7 +12,7 @@ function talk(msg)
         [1] = getrenv()._G.Pass, 
         [2] = "Chatted", 
         [3] = msg,
-        [4] = Color3.fromRGB(Color3.fromRGB(255, 128, 1))
+        [4] = Color3.fromRGB(255, 128, 1)
     }
     local Event = game:GetService("ReplicatedStorage").Remotes.Events
     Event:FireServer(A_1)
