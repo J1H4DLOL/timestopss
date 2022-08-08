@@ -1,0 +1,53 @@
+timestop = settings().Network
+timestop.IncomingReplicationLag = 0
+local Effect = Instance.new("ColorCorrectionEffect")
+Effect.Parent = game.Lighting
+Effect.Saturation = -3
+Effect.Brightness = 0
+Effect.Contrast = 0
+lolz = false
+Effect.Enabled = false
+function talk(msg)
+    local A_1 =  {
+        [1] = getrenv()._G.Pass, 
+        [2] = "Chatted", 
+        [3] = msg,
+        [4] = Color3.fromRGB(Color3.fromRGB(255, 128, 1))
+    }
+    local Event = game:GetService("ReplicatedStorage").Remotes.Events
+    Event:FireServer(A_1)
+end
+local function CreateSound(ID)
+    local Sound = Instance.new("Sound")
+    Sound.Parent = game.Players.LocalPlayer.StarterPlaylist
+    Sound.Volume = 2
+    Sound.Playing = true
+    Sound.Looped = false
+    Sound.SoundId = "rbxassetid://"..ID 
+    Sound.Name = "sfx"
+end
+function onKeyPress(inputObject, gameProcessedEvent)
+    if inputObject.KeyCode == Enum.KeyCode.Eight then
+        spawn(function()
+            if lolz == false then
+                lolz = true
+                talk("ZA WARUDO! TIME SHALL STOP!")
+                CreateSound(2553929805)
+                wait(.5)
+                CreateSound(840567549)
+                wait()
+                timestop.IncomingReplicationLag = 1000
+                Effect.Enabled = true
+            else
+                lolz = false
+                talk("Time may move once again.")
+                CreateSound(4580052068)
+                wait(0.1)
+                CreateSound(5687891658)
+                timestop.IncomingReplicationLag = 0
+                Effect.Enabled = false
+            end
+        end)
+    end
+end
+game:GetService("UserInputService").InputBegan:connect(onKeyPress)
